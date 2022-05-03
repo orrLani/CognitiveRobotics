@@ -1,0 +1,2 @@
+sjtu-drone
+-DCATKIN_DEVEL_PREFIX=/home/orr/CognitiveRobotics/devel -DCMAKE_INSTALL_PREFIX=/home/orr/CognitiveRobotics/install -G Unix Makefiles
