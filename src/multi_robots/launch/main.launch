@@ -1,12 +1,24 @@
 <launch>
   <param name="/use_sim_time" value="true" />
 
-  <!-- start world -->
-  <node name="gazebo" pkg="gazebo_ros" type="gazebo"
-   args="$(find turtlebot3_gazebo)/worlds/empty.world" respawn="false" output="screen" />
+    <env name="GAZEBO_MODEL_PATH" value="$GAZEBO_MODEL_PATH:$(find sjtu_drone)/models"/>
+    <env name="GAZEBO_PLUGIN_PATH" value="$GAZEBO_PLUGIN_PATH:$(find sjtu_drone)/plugins"/> <!--add custom plugins for drone to gazebo plugin path-->
+    <env name="GAZEBO_RESOURCE_PATH" value="$GAZEBO_RESOURCE_PATH:$(find sjtu_drone)/meshes"/>
 
-  <!-- start gui -->
-  <!--node name="gazebo_gui" pkg="gazebo" type="gui" respawn="false" output="screen"/-->
+    <arg name="world_name" default=""/>
+    <!-- <arg name="world_name" default="$(find sjtu_drone)/worlds/contest.world"/> -->
+    <arg name="paused" value="false"/>
+    <arg name="verbose" value="true"/>
+    <arg name="gui" value="true"/>
+
+    <!-- launch the custom world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+            <arg name="paused" value="$(arg paused)"/>
+            <arg name="world_name" value="$(arg world_name)"/>
+            <arg name="verbose" value="$(arg verbose)"/>
+            <arg name="gui" value="$(arg gui)"/>
+    </include>
+
 
   <!-- include our robots -->
   <include file="$(find multi_robots)/launch/robots.launch"/>
