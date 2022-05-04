@@ -131,6 +131,10 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/orr/CognitiveRobotics/build/gtest/cmake_install.cmake")
+  include("/home/orr/CognitiveRobotics/build/turtlebot3_simulations/turtlebot3_simulations/cmake_install.cmake")
+  include("/home/orr/CognitiveRobotics/build/multi_robots/cmake_install.cmake")
+  include("/home/orr/CognitiveRobotics/build/turtlebot3_simulations/turtlebot3_fake/cmake_install.cmake")
+  include("/home/orr/CognitiveRobotics/build/turtlebot3_simulations/turtlebot3_gazebo/cmake_install.cmake")
   include("/home/orr/CognitiveRobotics/build/sjtu-drone/cmake_install.cmake")
 
 endif()

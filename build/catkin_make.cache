@@ -1,2 +1,2 @@
-sjtu-drone
+multi_robots:sjtu-drone:turtlebot3_simulations/turtlebot3_fake:turtlebot3_simulations/turtlebot3_gazebo:turtlebot3_simulations/turtlebot3_simulations
 -DCATKIN_DEVEL_PREFIX=/home/orr/CognitiveRobotics/devel -DCMAKE_INSTALL_PREFIX=/home/orr/CognitiveRobotics/install -G Unix Makefiles

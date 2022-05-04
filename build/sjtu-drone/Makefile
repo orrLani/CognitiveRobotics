@@ -68,50 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -124,6 +80,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -134,6 +112,28 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,6 +168,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
+
+# Convenience name for target.
+plugin_ros_sonar: sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
+
+.PHONY : plugin_ros_sonar
+
+# fast build rule for target.
+plugin_ros_sonar/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/build
+.PHONY : plugin_ros_sonar/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+
+# Convenience name for target.
+plugin_ros_cam: sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+
+.PHONY : plugin_ros_cam
+
+# fast build rule for target.
+plugin_ros_cam/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build
+.PHONY : plugin_ros_cam/fast
+
+# Convenience name for target.
 sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule:
 	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
 .PHONY : sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
@@ -183,19 +213,19 @@ plugin_ros_imu/fast:
 .PHONY : plugin_ros_imu/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_drone.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_drone.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_drone.dir/rule
+sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
 
 # Convenience name for target.
-plugin_drone: sjtu-drone/CMakeFiles/plugin_drone.dir/rule
+plugin_ros_init: sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
 
-.PHONY : plugin_drone
+.PHONY : plugin_ros_init
 
 # fast build rule for target.
-plugin_drone/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_drone.dir/build.make sjtu-drone/CMakeFiles/plugin_drone.dir/build
-.PHONY : plugin_drone/fast
+plugin_ros_init/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_init.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_init.dir/build
+.PHONY : plugin_ros_init/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_py.dir/rule:
@@ -211,21 +241,6 @@ visualization_msgs_generate_messages_py: sjtu-drone/CMakeFiles/visualization_msg
 visualization_msgs_generate_messages_py/fast:
 	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
 .PHONY : visualization_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-
-# Convenience name for target.
-plugin_ros_init: sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-
-.PHONY : plugin_ros_init
-
-# fast build rule for target.
-plugin_ros_init/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_init.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_init.dir/build
-.PHONY : plugin_ros_init/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/rule:
@@ -258,154 +273,19 @@ visualization_msgs_generate_messages_lisp/fast:
 .PHONY : visualization_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+nodelet_generate_messages_lisp: sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
 
-.PHONY : nav_msgs_generate_messages_lisp
+.PHONY : nodelet_generate_messages_lisp
 
 # fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/rule
-
-.PHONY : nav_msgs_generate_messages_eus
-
-# fast build rule for target.
-nav_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
-.PHONY : nav_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-visualization_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
-
-.PHONY : visualization_msgs_generate_messages_eus
-
-# fast build rule for target.
-visualization_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
-.PHONY : visualization_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : nav_msgs_generate_messages_cpp
-
-# fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_py: sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
-
-.PHONY : bond_generate_messages_py
-
-# fast build rule for target.
-bond_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/build
-.PHONY : bond_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_nodejs: sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
-
-.PHONY : bond_generate_messages_nodejs
-
-# fast build rule for target.
-bond_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/build
-.PHONY : bond_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_lisp: sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
-
-.PHONY : bond_generate_messages_lisp
-
-# fast build rule for target.
-bond_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/build
-.PHONY : bond_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-bond_generate_messages_eus: sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
-
-.PHONY : bond_generate_messages_eus
-
-# fast build rule for target.
-bond_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/build
-.PHONY : bond_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_nodejs: sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
-
-.PHONY : nodelet_generate_messages_nodejs
-
-# fast build rule for target.
-nodelet_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/build
-.PHONY : nodelet_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_eus: sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
-
-.PHONY : nodelet_generate_messages_eus
-
-# fast build rule for target.
-nodelet_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/build
-.PHONY : nodelet_generate_messages_eus/fast
+nodelet_generate_messages_lisp/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/build
+.PHONY : nodelet_generate_messages_lisp/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/nodelet_generate_messages_cpp.dir/rule:
@@ -423,349 +303,79 @@ nodelet_generate_messages_cpp/fast:
 .PHONY : nodelet_generate_messages_cpp/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+nodelet_generate_messages_nodejs: sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_nodejs
+.PHONY : nodelet_generate_messages_nodejs
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
-.PHONY : trajectory_msgs_generate_messages_nodejs/fast
+nodelet_generate_messages_nodejs/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_nodejs.dir/build
+.PHONY : nodelet_generate_messages_nodejs/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+sjtu-drone/CMakeFiles/plugin_drone.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_drone.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_drone.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/rule
+plugin_drone: sjtu-drone/CMakeFiles/plugin_drone.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_lisp
+.PHONY : plugin_drone
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
-.PHONY : trajectory_msgs_generate_messages_lisp/fast
+plugin_drone/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_drone.dir/build.make sjtu-drone/CMakeFiles/plugin_drone.dir/build
+.PHONY : plugin_drone/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-plugin_ros_cam: sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+nodelet_generate_messages_eus: sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/rule
 
-.PHONY : plugin_ros_cam
+.PHONY : nodelet_generate_messages_eus
 
 # fast build rule for target.
-plugin_ros_cam/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build
-.PHONY : plugin_ros_cam/fast
+nodelet_generate_messages_eus/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_eus.dir/build
+.PHONY : nodelet_generate_messages_eus/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
+bond_generate_messages_nodejs: sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_cpp
+.PHONY : bond_generate_messages_nodejs
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
-.PHONY : trajectory_msgs_generate_messages_cpp/fast
+bond_generate_messages_nodejs/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_nodejs.dir/build
+.PHONY : bond_generate_messages_nodejs/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
 
 # Convenience name for target.
-gazebo_msgs_generate_messages_py: sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+bond_generate_messages_py: sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/rule
 
-.PHONY : gazebo_msgs_generate_messages_py
+.PHONY : bond_generate_messages_py
 
 # fast build rule for target.
-gazebo_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
-.PHONY : gazebo_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
-.PHONY : gazebo_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_lisp: sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-nodelet_generate_messages_lisp: sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/rule
-
-.PHONY : nodelet_generate_messages_lisp
-
-# fast build rule for target.
-nodelet_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/nodelet_generate_messages_lisp.dir/build
-.PHONY : nodelet_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : nav_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-nav_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
-.PHONY : nav_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
-
-# Convenience name for target.
-gazebo_plugins_gencfg: sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
-
-.PHONY : gazebo_plugins_gencfg
-
-# fast build rule for target.
-gazebo_plugins_gencfg/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/build.make sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/build
-.PHONY : gazebo_plugins_gencfg/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_cpp: sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-
-.PHONY : std_srvs_generate_messages_cpp
-
-# fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_lisp: sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_lisp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_cpp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
-.PHONY : tf2_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/rule
-
-# Convenience name for target.
-gazebo_ros_gencfg: sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/rule
-
-.PHONY : gazebo_ros_gencfg
-
-# fast build rule for target.
-gazebo_ros_gencfg/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/build.make sjtu-drone/CMakeFiles/gazebo_ros_gencfg.dir/build
-.PHONY : gazebo_ros_gencfg/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
+bond_generate_messages_py/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_py.dir/build
+.PHONY : bond_generate_messages_py/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/rule:
@@ -783,319 +393,34 @@ visualization_msgs_generate_messages_cpp/fast:
 .PHONY : visualization_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+gazebo_plugins_gencfg: sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_lisp
+.PHONY : gazebo_plugins_gencfg
 
 # fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
+gazebo_plugins_gencfg/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/build.make sjtu-drone/CMakeFiles/gazebo_plugins_gencfg.dir/build
+.PHONY : gazebo_plugins_gencfg/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-sensor_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+bond_generate_messages_eus: sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/rule
 
-.PHONY : sensor_msgs_generate_messages_eus
+.PHONY : bond_generate_messages_eus
 
 # fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_cpp: sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/actionlib_generate_messages_cpp.dir/build
-.PHONY : actionlib_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_py: sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_py
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
-.PHONY : actionlib_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-trajectory_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
-
-.PHONY : trajectory_msgs_generate_messages_eus
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
-.PHONY : trajectory_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_cpp: sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/rule
-
-.PHONY : tf_generate_messages_cpp
-
-# fast build rule for target.
-tf_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/tf_generate_messages_cpp.dir/build
-.PHONY : tf_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_py: sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-.PHONY : std_srvs_generate_messages_py
-
-# fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_eus: sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/rule
-
-.PHONY : tf_generate_messages_eus
-
-# fast build rule for target.
-tf_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/tf_generate_messages_eus.dir/build
-.PHONY : tf_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_py: sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_py
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_eus
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
-.PHONY : actionlib_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_cpp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
+bond_generate_messages_eus/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_eus.dir/build
+.PHONY : bond_generate_messages_eus/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/bond_generate_messages_cpp.dir/rule:
@@ -1113,96 +438,6 @@ bond_generate_messages_cpp/fast:
 .PHONY : bond_generate_messages_cpp/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_lisp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
-.PHONY : gazebo_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_nodejs: sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_nodejs
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_py: sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_py
-
-# fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_lisp: sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/rule
-
-.PHONY : actionlib_generate_messages_lisp
-
-# fast build rule for target.
-actionlib_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/actionlib_generate_messages_lisp.dir/build
-.PHONY : actionlib_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
 sjtu-drone/CMakeFiles/nodelet_generate_messages_py.dir/rule:
 	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nodelet_generate_messages_py.dir/rule
 .PHONY : sjtu-drone/CMakeFiles/nodelet_generate_messages_py.dir/rule
@@ -1218,349 +453,34 @@ nodelet_generate_messages_py/fast:
 .PHONY : nodelet_generate_messages_py/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_nodejs: sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+bond_generate_messages_lisp: sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/rule
 
-.PHONY : std_srvs_generate_messages_nodejs
+.PHONY : bond_generate_messages_lisp
 
 # fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
+bond_generate_messages_lisp/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/bond_generate_messages_lisp.dir/build
+.PHONY : bond_generate_messages_lisp/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-nav_msgs_generate_messages_py: sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+visualization_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/rule
 
-.PHONY : nav_msgs_generate_messages_py
+.PHONY : visualization_msgs_generate_messages_eus
 
 # fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_lisp: sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_cpp: sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_cpp
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_nodejs: sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_cpp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
-.PHONY : gazebo_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-trajectory_msgs_generate_messages_py: sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-
-.PHONY : trajectory_msgs_generate_messages_py
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
-.PHONY : trajectory_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_eus: sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/rule
-
-.PHONY : actionlib_generate_messages_eus
-
-# fast build rule for target.
-actionlib_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/actionlib_generate_messages_eus.dir/build
-.PHONY : actionlib_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_cpp
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_cpp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
-.PHONY : actionlib_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_nodejs: sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule
-
-.PHONY : actionlib_generate_messages_nodejs
-
-# fast build rule for target.
-actionlib_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
-.PHONY : actionlib_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_py: sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-.PHONY : actionlib_generate_messages_py
-
-# fast build rule for target.
-actionlib_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/actionlib_generate_messages_py.dir/build
-.PHONY : actionlib_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
-
-# Convenience name for target.
-plugin_ros_sonar: sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/rule
-
-.PHONY : plugin_ros_sonar
-
-# fast build rule for target.
-plugin_ros_sonar/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_sonar.dir/build
-.PHONY : plugin_ros_sonar/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_py: sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/rule
-
-.PHONY : tf_generate_messages_py
-
-# fast build rule for target.
-tf_generate_messages_py/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/tf_generate_messages_py.dir/build
-.PHONY : tf_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
-.PHONY : actionlib_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-actionlib_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : actionlib_msgs_generate_messages_lisp
-
-# fast build rule for target.
-actionlib_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
-.PHONY : actionlib_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_gencfg: sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/rule
-
-.PHONY : dynamic_reconfigure_gencfg
-
-# fast build rule for target.
-dynamic_reconfigure_gencfg/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_gencfg.dir/build
-.PHONY : dynamic_reconfigure_gencfg/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-geometry_msgs_generate_messages_nodejs/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
-.PHONY : geometry_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-dynamic_reconfigure_generate_messages_eus: sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/rule
-
-.PHONY : dynamic_reconfigure_generate_messages_eus
-
-# fast build rule for target.
-dynamic_reconfigure_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
-.PHONY : dynamic_reconfigure_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_eus
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_eus/fast:
-	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
-.PHONY : gazebo_msgs_generate_messages_eus/fast
+visualization_msgs_generate_messages_eus/fast:
+	cd /home/orr/CognitiveRobotics/build && $(MAKE) -f sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+.PHONY : visualization_msgs_generate_messages_eus/fast
 
 src/pid_controller.o: src/pid_controller.cpp.o
 
@@ -1758,105 +678,33 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
+	@echo "... install/local"
 	@echo "... test"
+	@echo "... plugin_ros_sonar"
+	@echo "... plugin_ros_cam"
 	@echo "... plugin_ros_imu"
-	@echo "... plugin_drone"
-	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... plugin_ros_init"
+	@echo "... visualization_msgs_generate_messages_py"
 	@echo "... visualization_msgs_generate_messages_nodejs"
 	@echo "... visualization_msgs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... nav_msgs_generate_messages_eus"
-	@echo "... visualization_msgs_generate_messages_eus"
-	@echo "... nav_msgs_generate_messages_cpp"
-	@echo "... bond_generate_messages_py"
-	@echo "... bond_generate_messages_nodejs"
-	@echo "... bond_generate_messages_lisp"
-	@echo "... bond_generate_messages_eus"
-	@echo "... nodelet_generate_messages_nodejs"
-	@echo "... nodelet_generate_messages_eus"
-	@echo "... nodelet_generate_messages_cpp"
-	@echo "... trajectory_msgs_generate_messages_nodejs"
-	@echo "... trajectory_msgs_generate_messages_lisp"
-	@echo "... plugin_ros_cam"
-	@echo "... trajectory_msgs_generate_messages_cpp"
-	@echo "... gazebo_msgs_generate_messages_py"
-	@echo "... gazebo_msgs_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_lisp"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... nodelet_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... nav_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... gazebo_plugins_gencfg"
-	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... dynamic_reconfigure_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_cpp"
-	@echo "... gazebo_ros_gencfg"
-	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... nodelet_generate_messages_cpp"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_cpp"
+	@echo "... nodelet_generate_messages_nodejs"
+	@echo "... plugin_drone"
+	@echo "... nodelet_generate_messages_eus"
+	@echo "... list_install_components"
+	@echo "... bond_generate_messages_nodejs"
+	@echo "... bond_generate_messages_py"
 	@echo "... visualization_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_cpp"
-	@echo "... actionlib_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... trajectory_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... tf_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... tf_generate_messages_eus"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_generate_messages_py"
-	@echo "... actionlib_msgs_generate_messages_eus"
-	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... install"
+	@echo "... gazebo_plugins_gencfg"
+	@echo "... bond_generate_messages_eus"
 	@echo "... bond_generate_messages_cpp"
-	@echo "... gazebo_msgs_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_generate_messages_nodejs"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... actionlib_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... nodelet_generate_messages_py"
-	@echo "... std_srvs_generate_messages_nodejs"
-	@echo "... nav_msgs_generate_messages_py"
-	@echo "... tf_generate_messages_lisp"
-	@echo "... dynamic_reconfigure_generate_messages_cpp"
-	@echo "... tf_generate_messages_nodejs"
-	@echo "... gazebo_msgs_generate_messages_cpp"
-	@echo "... trajectory_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... actionlib_generate_messages_eus"
-	@echo "... actionlib_msgs_generate_messages_cpp"
-	@echo "... actionlib_generate_messages_nodejs"
-	@echo "... actionlib_generate_messages_py"
-	@echo "... plugin_ros_sonar"
-	@echo "... tf_generate_messages_py"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... actionlib_msgs_generate_messages_nodejs"
-	@echo "... actionlib_msgs_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_nodejs"
-	@echo "... dynamic_reconfigure_gencfg"
-	@echo "... geometry_msgs_generate_messages_nodejs"
-	@echo "... dynamic_reconfigure_generate_messages_eus"
-	@echo "... gazebo_msgs_generate_messages_eus"
+	@echo "... bond_generate_messages_lisp"
+	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... src/pid_controller.o"
 	@echo "... src/pid_controller.i"
 	@echo "... src/pid_controller.s"
